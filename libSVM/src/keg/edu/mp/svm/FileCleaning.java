@@ -11,6 +11,7 @@ import java.io.LineNumberReader;
  * 
  */
 public class FileCleaning {
+	String folder;
 	String posFileName, negFileName, outTrainName, outTestName;
 	int trainNum, testNum, fileNum;
 	int posLineNum, negLineNum;
@@ -18,9 +19,10 @@ public class FileCleaning {
 	FileWriter fwTrain;
 	FileWriter fwTest;
 
-	public FileCleaning(String posFileName, String negFileName,
+	public FileCleaning(String folder, String posFileName, String negFileName,
 			String outTrainName, String outTestName, int trainNum, int testNum,
 			int fileNum) {
+		this.folder = folder;
 		this.posFileName = posFileName;
 		this.negFileName = negFileName;
 		this.outTrainName = outTrainName;
@@ -28,8 +30,10 @@ public class FileCleaning {
 		this.trainNum = trainNum;
 		this.testNum = testNum;
 		this.fileNum = fileNum;
-		this.posLineNum = FileStaticFunction.getLineNum(posFileName);
-		this.negLineNum = FileStaticFunction.getLineNum(negFileName);
+		this.posLineNum = FileStaticFunction.getLineNum(folder + "/"
+				+ posFileName);
+		this.negLineNum = FileStaticFunction.getLineNum(folder + "/"
+				+ negFileName);
 	}
 
 	public void Generate() {
@@ -40,11 +44,13 @@ public class FileCleaning {
 			int k = 0;
 			int testStart = 0;
 			while (k < fileNum) {
-				lnrPos = FileStaticFunction.getLNR(posFileName);
-				lnrNeg = FileStaticFunction.getLNR(negFileName);
+				lnrPos = FileStaticFunction.getLNR(folder + "/" + posFileName);
+				lnrNeg = FileStaticFunction.getLNR(folder + "/" + negFileName);
 
-				fwTrain = FileStaticFunction.getFW(k + "_" + outTrainName);
-				fwTest = FileStaticFunction.getFW(k + "_" + outTestName);
+				fwTrain = FileStaticFunction.getFW(folder + "/" + k + "_"
+						+ outTrainName);
+				fwTest = FileStaticFunction.getFW(folder + "/" + k + "_"
+						+ outTestName);
 				String line = lnrPos.readLine();
 				int i = 0;
 				while (line != null) {
@@ -61,7 +67,7 @@ public class FileCleaning {
 				i = 0;
 				line = lnrNeg.readLine();
 				while (line != null) {
-					if ((testStart + testNum <negLineNum && i >= testStart && i < testStart
+					if ((testStart + testNum < negLineNum && i >= testStart && i < testStart
 							+ testNum)
 							|| (testStart + testNum > negLineNum && (i > testStart || i < (testStart + testNum)
 									% negLineNum)))

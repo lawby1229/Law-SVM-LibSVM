@@ -18,7 +18,7 @@ import ls.libsvm.*;
 public class Future {
 
 	public static void main(String law[]) {
-		
+
 		// *******************************************************************
 		// String[] arg = { ".\\heart_scale", // 存放SVM训练模型用的数据的路径
 		// ".\\mode", "-t", "0" }; // 存放SVM通过训练数据训练出来的模型的路径 -t是核函数
@@ -63,49 +63,46 @@ public class Future {
 		// };
 		// String[] parg02_1 = { ".\\train_file1", ".\\mode02", ".\\predict02_1"
 		// };
-	
-		try {
-			String filepath = "b500-100";
-		
-			FileCleaning fc = new FileCleaning("brand/posFile.txt",
-					"brand/negFile.txt", "trainFile.txt", "testFile.txt", 500, 100,
-					5);
-//			fc.Generate();
-			System.out.println("........SVM运行开始..........");
 
-			for (int s = 0; s < 5; s++) {
-				
-				String[] arg0 = {
-						".\\" + filepath + "\\" + s + "_trainFile.txt",
-						".\\" + filepath + "\\mode" + s, "-t", "2" };
+		String filepath = "2b_P462_N321";
+		int times = 7;
+		FileCleaning fc = new FileCleaning(filepath, "posFile.txt",
+				"negFile.txt", "trainFile.txt", "testFile.txt", 200, 40, times);
+		 fc.Generate();//生成文件
+		System.out.println("........SVM运行开始..........");
 
-				String[] parg0 = {
-						".\\" + filepath + "\\" + s + "_testFile.txt", // 这个是存放测试数据
-						".\\" + filepath + "\\mode" + s, // 调用的是训练以后的模型
-						".\\" + filepath + "\\predict" + s }; // 生成的结果的文件的路径
-				// svm_train.main(arg);+
+		for (int s = 0; s < times; s++) {
+
+			String[] arg0 = { ".\\" + filepath + "\\" + s + "_trainFile.txt",
+					".\\" + filepath + "\\mode" + s, "-t", "2" };
+
+			String[] parg0 = { ".\\" + filepath + "\\" + s + "_testFile.txt", // 这个是存放测试数据
+					".\\" + filepath + "\\mode" + s, // 调用的是训练以后的模型
+					".\\" + filepath + "\\predict" + s }; // 生成的结果的文件的路径
+			// svm_train.main(arg);+
+			try {
 				svm_train.main(arg0);
 				svm_predict.main(parg0);
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-
-			// svm_train.main(arg1);
-			// svm_train.main(arg2);
-
-			// svm_predict.main(parg0_1);
-			// svm_predict.main(parg0_2);
-			// svm_predict.main(parg1_0);
-			// svm_predict.main(parg1_2);
-			// svm_predict.main(parg2_0);
-			// svm_predict.main(parg2_1);
-			// svm_train.main(arg01);
-			// svm_train.main(arg12);
-			// svm_train.main(arg02);
-			// svm_predict.main(parg01_2);
-			// svm_predict.main(parg12_0);
-			// svm_predict.main(parg02_1);
-		} catch (IOException e) {
-
-			e.printStackTrace();
 		}
+
+		// svm_train.main(arg1);
+		// svm_train.main(arg2);
+
+		// svm_predict.main(parg0_1);
+		// svm_predict.main(parg0_2);
+		// svm_predict.main(parg1_0);
+		// svm_predict.main(parg1_2);
+		// svm_predict.main(parg2_0);
+		// svm_predict.main(parg2_1);
+		// svm_train.main(arg01);
+		// svm_train.main(arg12);
+		// svm_train.main(arg02);
+		// svm_predict.main(parg01_2);
+		// svm_predict.main(parg12_0);
+		// svm_predict.main(parg02_1);
+
 	}
 }

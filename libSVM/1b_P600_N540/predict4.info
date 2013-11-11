@@ -1,0 +1,10 @@
+POS = 100
+NEG = 100
+TP = 100, FP = 78
+TN = 22, FN = 0
+Precision = 0.5617977528089888
+Accuracy = 0.61
+Recall = 1.0
+Specificity = 0.22
+F_score = 0.7577639751552795
+(122/200) (classification)
