@@ -117,8 +117,8 @@ public class svm_predict {
 					/ (Recall + Accuracy);
 			System.out.print("POS = " + POS + "\n");
 			System.out.print("NEG = " + NEG + "\n");
-			System.out.print("TP = " + TP+", FP = "+FP + "\n");
-			System.out.print("TN = " + TN+", FN = "+FN + "\n");
+			System.out.print("TP = " + TP + ", FP = " + FP + "\n");
+			System.out.print("TN = " + TN + ", FN = " + FN + "\n");
 			System.out.print("Precision = " + Precision + "\n");
 			System.out.print("Accuracy = " + Accuracy + "\n");
 			System.out.print("Recall = " + Recall + "\n");
@@ -130,6 +130,10 @@ public class svm_predict {
 
 				output_info.write(("POS = " + POS + "\n").getBytes());
 				output_info.write(("NEG = " + NEG + "\n").getBytes());
+				output_info.write(("TP = " + TP + ", FP = " + FP + "\n")
+						.getBytes());
+				output_info.write(("TN = " + TN + ", FN = " + FN + "\n")
+						.getBytes());
 				output_info.write(("Precision = " + Precision + "\n")
 						.getBytes());
 				output_info.write(("Accuracy = " + Accuracy + "\n").getBytes());
