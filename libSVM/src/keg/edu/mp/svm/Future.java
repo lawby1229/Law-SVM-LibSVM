@@ -65,24 +65,33 @@ public class Future {
 		// };
 
 		String filepath = "2b_P462_N321";
-		int times = 7;
+		int times = 5;
 		FileCleaning fc = new FileCleaning(filepath, "posFile.txt",
-				"negFile.txt", "trainFile.txt", "testFile.txt", 200, 40, times);
-		 fc.Generate();//生成文件
+				"negFile.txt", "trainFile.txt", "testFile.txt", 200,100, times);
+		 fc.Generate();// 生成文件
 		System.out.println("........SVM运行开始..........");
 
 		for (int s = 0; s < times; s++) {
+			String[] arg_scale_train = { "-l", "0", "-u", "1", "-s", "range1",
+					".\\" + filepath + "\\" + s + "_trainFile.txt" };
 
-			String[] arg0 = { ".\\" + filepath + "\\" + s + "_trainFile.txt",
+			String[] arg_scale_test = { "-l", "0", "-u", "1", "-r", "range1",
+					".\\" + filepath + "\\" + s + "_testFile.txt" };
+
+			String[] arg_train = {
+					".\\" + filepath + "\\" + s + "_trainFile.txt.scale",
 					".\\" + filepath + "\\mode" + s, "-t", "2" };
 
-			String[] parg0 = { ".\\" + filepath + "\\" + s + "_testFile.txt", // 这个是存放测试数据
+			String[] arg_predict = {
+					".\\" + filepath + "\\" + s + "_testFile.txt.scale", // 这个是存放测试数据
 					".\\" + filepath + "\\mode" + s, // 调用的是训练以后的模型
 					".\\" + filepath + "\\predict" + s }; // 生成的结果的文件的路径
 			// svm_train.main(arg);+
 			try {
-				svm_train.main(arg0);
-				svm_predict.main(parg0);
+				svm_scale.main(arg_scale_train);
+				 svm_scale.main(arg_scale_test);
+				 svm_train.main(arg_train);
+				 svm_predict.main(arg_predict);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
