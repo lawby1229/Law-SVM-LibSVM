@@ -54,7 +54,7 @@ public class FileCleaning {
 				String line = lnrPos.readLine();
 				int i = 0;
 				while (line != null) {
-					if ((testStart + testNum < posLineNum && i >= testStart && i < testStart
+					if ((testStart + testNum <= posLineNum && i >= testStart && i < testStart
 							+ testNum)
 							|| (testStart + testNum > posLineNum && (i > testStart || i < (testStart + testNum)
 									% posLineNum)))
@@ -67,7 +67,7 @@ public class FileCleaning {
 				i = 0;
 				line = lnrNeg.readLine();
 				while (line != null) {
-					if ((testStart + testNum < negLineNum && i >= testStart && i < testStart
+					if ((testStart + testNum <= negLineNum && i >= testStart && i < testStart
 							+ testNum)
 							|| (testStart + testNum > negLineNum && (i > testStart || i < (testStart + testNum)
 									% negLineNum)))

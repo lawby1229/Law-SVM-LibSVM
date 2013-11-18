@@ -64,14 +64,15 @@ public class Future {
 		// String[] parg02_1 = { ".\\train_file1", ".\\mode02", ".\\predict02_1"
 		// };
 
+		String filepath = "3b_P800_N808";
 		// String filepath = "2b_P462_N321";
-		String filepath = "1b_P600_N540";
-		int times = 5;
+		// String filepath = "1b_P600_N540";
+		int times = 4;
 		FileCleaning fc = new FileCleaning(filepath, "posFile.txt",
-				"negFile.txt", "trainFile.txt", "testFile.txt", 400, 100, times);
-		fc.Generate();// 生成文件
+				"negFile.txt", "trainFile.txt", "testFile.txt", 600, 100, times);
+		 fc.Generate();// 生成文件
 		System.out.println("........SVM运行开始..........");
-
+		double Accuracy_sum = 0;
 		for (int s = 0; s < times; s++) {
 			String[] arg_scale_train = { "-l", "0", "-u", "1", "-s", "range1",
 					".\\" + filepath + "\\" + s + "_trainFile.txt" };
@@ -81,23 +82,35 @@ public class Future {
 
 			String[] arg_train = {
 					".\\" + filepath + "\\" + s + "_trainFile.txt",
-					".\\" + filepath + "\\mode" + s, "-t", "1" };
+					".\\" + filepath + "\\mode" + s, "-t", "0" };
 
 			String[] arg_predict = {
 					".\\" + filepath + "\\" + s + "_testFile.txt", // 这个是存放测试数据
 					".\\" + filepath + "\\mode" + s, // 调用的是训练以后的模型
 					".\\" + filepath + "\\predict" + s }; // 生成的结果的文件的路径
 
+			String[] arg_train_scale = {
+					".\\" + filepath + "\\" + s + "_trainFile.txt.scale",
+					".\\" + filepath + "\\mode" + s, "-t", "1" };
+			String[] arg_predict_scale = {
+					".\\" + filepath + "\\" + s + "_testFile.txt.scale", // 这个是存放测试数据
+					".\\" + filepath + "\\mode" + s, // 调用的是训练以后的模型
+					".\\" + filepath + "\\predict" + s }; // 生成的结果的文件的路径
+
 			try {
 				// svm_scale.main(arg_scale_train);
 				// svm_scale.main(arg_scale_test);
+
 				svm_train.main(arg_train);
-				svm_predict.main(arg_predict);
+				Accuracy_sum += svm_predict.main(arg_predict);
+
+				// svm_train.main(arg_train_scale);
+				// svm_predict.main(arg_predict_scale);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-
+		System.out.println("\n最后准确率："+Accuracy_sum / times);
 		// svm_train.main(arg1);
 		// svm_train.main(arg2);
 
