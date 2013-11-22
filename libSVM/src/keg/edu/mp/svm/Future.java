@@ -82,7 +82,7 @@ public class Future {
 
 			String[] arg_train = {
 					".\\" + filepath + "\\" + s + "_trainFile.txt",
-					".\\" + filepath + "\\mode" + s, "-t", "0" };
+					".\\" + filepath + "\\mode" + s, "-t", "4","-c","1" };
 
 			String[] arg_predict = {
 					".\\" + filepath + "\\" + s + "_testFile.txt", // 这个是存放测试数据
