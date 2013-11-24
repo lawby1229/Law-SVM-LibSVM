@@ -115,6 +115,7 @@ public class svm_predict {
 			double Specificity = (double) TN / (TN + FP);
 			double F_score = 2 * (double) Recall * Accuracy
 					/ (Recall + Accuracy);
+			System.out.print("=========================================\n");
 			System.out.print("POS = " + POS + "\n");
 			System.out.print("NEG = " + NEG + "\n");
 			System.out.print("TP = " + TP + ", FP = " + FP + "\n");
@@ -124,6 +125,7 @@ public class svm_predict {
 			System.out.print("Recall = " + Recall + "\n");
 			System.out.print("Specificity = " + Specificity + "\n");
 			System.out.print("F_score = " + F_score + "\n");
+			System.out.print("=========================================\n");
 			System.out.print("Accuracy = " + (double) correct / total * 100
 					+ "% (" + correct + "/" + total + ") (classification)\n");
 			try {
