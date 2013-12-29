@@ -6,12 +6,13 @@ import ls.svm_predict;
 import ls.svm_train;
 
 public class MultiFeature {
-	public static void main(String arg[]) {
-		String filepath = "2m";
+	public static void SVM(String folder)
+	{
+		String filepath = folder;
 		System.out.println("........SVM运行开始..........");
 		double Accuracy_sum = 0;
 		String[] arg_train = { ".\\" + filepath + "\\" + "trainFile.txt",
-				".\\" + filepath + "\\mode", "-t", "1", "-c", "100","-g","0.5" };
+				".\\" + filepath + "\\mode", "-t", "2" };
 
 		String[] arg_predict = { ".\\" + filepath + "\\" + "testFile.txt", // 这个是存放测试数据
 				".\\" + filepath + "\\mode", // 调用的是训练以后的模型
@@ -25,5 +26,11 @@ public class MultiFeature {
 		}
 
 		System.out.println("\n最后准确率：" + Accuracy_sum);
+	}
+	public static void main(String arg[]) {
+		MultiFeature.SVM("multi_host_C3");
+		MultiFeature.SVM("multi_host_C4");
+		MultiFeature.SVM("multi_host_C5");
+		MultiFeature.SVM("multi_host_C6");
 	}
 }
