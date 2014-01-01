@@ -1,13 +1,45 @@
 package keg.edu.mp.svm;
 
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.LineNumberReader;
 
 import ls.svm_predict;
 import ls.svm_train;
 
 public class MultiFeature {
-	public static void SVM(String folder)
-	{
+	/**
+	 * 删除folder目录下fileName文件中的所有标签是label的数据
+	 * @param folder
+	 * @param fileName
+	 * @param newFileName
+	 * @param label
+	 */
+	public static void deleteLabel(String folder, String fileName,
+			String newFileName, String label) {
+		LineNumberReader lnr = FileStaticFunction.getLNR(folder + "/"
+				+ fileName);
+		FileWriter fw = FileStaticFunction.getFW(folder + "/" + newFileName);
+
+		try {
+			String line = lnr.readLine();
+			while (line != null) {
+				if (!line.split(" ")[0].equals(label)) {
+					fw.write(line + "\n");
+				}
+				line = lnr.readLine();
+			}
+			fw.flush();
+			fw.close();
+			lnr.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public static void SVM(String folder) {
 		String filepath = folder;
 		System.out.println("........SVM运行开始..........");
 		double Accuracy_sum = 0;
@@ -27,10 +59,15 @@ public class MultiFeature {
 
 		System.out.println("\n最后准确率：" + Accuracy_sum);
 	}
+
 	public static void main(String arg[]) {
-//		MultiFeature.SVM("multi2_behavior_C3");
-//		MultiFeature.SVM("multi2_behavior_C4");
-		MultiFeature.SVM("multi2_behavior_C5");
-		MultiFeature.SVM("multi2_behavior_C6");
+		// MultiFeature.SVM("multi2_behavior_C3");
+		// MultiFeature.SVM("multi2_behavior_C4");
+		// MultiFeature.SVM("multi2_behavior_C5");
+//		MultiFeature.deleteLabel("multi_X_host_C11", "trainFile2.txt",
+//				"trainFile3.txt", "8");
+//		MultiFeature.deleteLabel("multi_X_host_C11", "testFile2.txt",
+//				"testFile3.txt", "8");
+		 MultiFeature.SVM("multi_X_host_C11");
 	}
 }
