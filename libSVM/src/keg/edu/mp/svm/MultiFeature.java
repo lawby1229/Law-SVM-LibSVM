@@ -28,9 +28,9 @@ public class MultiFeature {
 		System.out.println("\n最后准确率：" + Accuracy_sum);
 	}
 	public static void main(String arg[]) {
-		MultiFeature.SVM("multi_host_C3");
-		MultiFeature.SVM("multi_host_C4");
-		MultiFeature.SVM("multi_host_C5");
-		MultiFeature.SVM("multi_host_C6");
+//		MultiFeature.SVM("multi2_behavior_C3");
+//		MultiFeature.SVM("multi2_behavior_C4");
+		MultiFeature.SVM("multi2_behavior_C5");
+		MultiFeature.SVM("multi2_behavior_C6");
 	}
 }

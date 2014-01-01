@@ -1,10 +1,10 @@
-POS = 0
+POS = 54
 NEG = 0
-TP = 0, FP = 0
+TP = 54, FP = 0
 TN = 0, FN = 0
-Precision = NaN
-Accuracy = NaN
-Recall = NaN
+Precision = 1.0
+Accuracy = 1.0
+Recall = 1.0
 Specificity = NaN
-F_score = NaN
-(530/1044) (classification)
+F_score = 1.0
+(965/1013) (classification)
