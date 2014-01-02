@@ -68,6 +68,6 @@ public class MultiFeature {
 //				"trainFile3.txt", "8");
 //		MultiFeature.deleteLabel("multi_X_host_C11", "testFile2.txt",
 //				"testFile3.txt", "8");
-		 MultiFeature.SVM("multi_X_host_C11");
+		 MultiFeature.SVM("multi_X_host_C253");
 	}
 }
