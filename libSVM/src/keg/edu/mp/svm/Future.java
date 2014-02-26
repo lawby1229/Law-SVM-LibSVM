@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import keg.edu.mp.tools.FileCleaning;
+
 import ls.*;
 import ls.libsvm.*;
 
@@ -97,9 +99,9 @@ public class Future {
 	// ---------------------------------------------------------------------------------------------------
 
 	public static void main(String law[]) {
-//预测是否换手机
+		// 预测是否换手机
 		Future.predictChangbleBrand("3b_P800_N808");
-//预测换什么品牌的手机
+		// 预测换什么品牌的手机
 		// svm_train.main(arg1);
 		// svm_train.main(arg2);
 

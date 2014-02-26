@@ -1,4 +1,4 @@
-package keg.edu.mp.svm;
+package keg.edu.mp.tools;
 
 import java.io.FileWriter;
 import java.io.IOException;
